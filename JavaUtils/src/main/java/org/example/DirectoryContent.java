@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.NoSuchElementException;
 
 import static java.nio.file.Files.list;
 
@@ -36,13 +36,13 @@ public class DirectoryContent {
         Files.write(path, lines, StandardCharsets.UTF_8);
     }
 
-    static String outputString(Path path) throws NumberFormatException {
+    static String outputString(Path path) throws NoSuchElementException {
         String directoryOrFile = (Files.isDirectory(path)) ? " (D) " : " (F) ";
         String lastModified = null;
         try {
             lastModified = Files.getLastModifiedTime(path).toString();
         } catch (IOException e) {
-            throw new NullPointerException(); // TODO: Update with another exception
+            throw new NoSuchElementException();
         }
 
         return path + directoryOrFile + "Last modified: " + lastModified;
@@ -62,6 +62,7 @@ public class DirectoryContent {
         }
     }
 
+    // Exercise 5
     public static void serialise(MyClass myClass, String fileName) { //myclass.ser
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName);
@@ -85,13 +86,11 @@ public class DirectoryContent {
             fileIn.close();
         } catch (IOException e) {
             System.out.println("Deserialisation could not be completed");
-            return null;
+            return myClass;
         } catch (ClassNotFoundException c) {
             System.out.println("MyClass class not found");
-            return null;
-        } finally {
-            System.out.println(Objects.requireNonNull(myClass).toString());
             return myClass;
         }
+        return myClass;
     }
 }
