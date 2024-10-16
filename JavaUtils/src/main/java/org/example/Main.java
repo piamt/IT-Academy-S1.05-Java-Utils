@@ -33,7 +33,9 @@ public class Main {
         File directory = new File("./");
         System.out.println(directory.getAbsolutePath());
 
-        System.out.println("\nNivell 2:"); // REVISA CON CORRECTOR, NO CONSIGO QUE ENCUENTRE CONFIG.PROPERTIES DESDE TERMINAL
+        System.out.println("\nNivell 2:");
+
+        // REVISA CON CORRECTOR, NO CONSIGO QUE ENCUENTRE CONFIG.PROPERTIES DESDE TERMINAL
 
         //try (FileInputStream input = new FileInputStream("src/main/resources/config.properties")) {
         try (InputStream input = Objects.requireNonNull(MyClass.class.getClassLoader().getResource("config.properties")).openStream()) {
