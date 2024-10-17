@@ -31,7 +31,7 @@ public class Main {
         System.out.println("Deserialised: " + myClass2.toString());
 
         System.out.println("\nNivell 2:");
-        try (InputStream input = Objects.requireNonNull(MyClass.class.getClassLoader().getResource("config.properties")).openStream()) {
+        try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {
             Properties appProps = new Properties();
             appProps.load(input);
             String folder = appProps.getProperty("folder");
