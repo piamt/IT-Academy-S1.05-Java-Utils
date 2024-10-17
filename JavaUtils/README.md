@@ -42,7 +42,11 @@ Fes els teus canvis i commiteja'ls: git commit -m 'Afegeix Nova Funcionalitat'
 Puja els canvis a la teva branca: git push origin feature/NovaFuncionalitat  
 Fes un pull request
 
-### Notes Exercici 1
-He creat un projecte de Java amb Build System Maden per poder afegir dependències. He afegit JUnit.
-
-Per c
+### Notes
+He creat la classe DirectoryContent amb diferents mètodes static que implementen el que es demana als exercicis.
+A més, he afegit un nou directory al src/main per afegir totes les files que es van generant:
+- directoryContent.txt: fitxer de text amb els directoris i files llistats del main folder
+- myclass.ser: classe serialitzada
+- directoryContentParametrized.txt: fitxer de text amb el llistat de directoris i files utilizant els parametres de resources/config.properties
+- directoryContent.encrypted: encrypted directoryContent.txt
+- directoryContentDecrypted.txt: decrypted directoryContent.txt
