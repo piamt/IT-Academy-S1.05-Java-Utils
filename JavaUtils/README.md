@@ -43,8 +43,8 @@ Puja els canvis a la teva branca: git push origin feature/NovaFuncionalitat
 Fes un pull request
 
 ### Notes
-He creat la classe DirectoryContent amb diferents mètodes static que implementen el que es demana als exercicis.
-A més, he afegit un nou directory al src/main per afegir totes les files que es van generant:
+He creat les classes DirectoryContent i EncryptionUtil amb diferents mètodes static que implementen el que es demana als exercicis.
+A més, he afegit un nou directory al src/main per afegir tots els fitxers que es van generant:
 - directoryContent.txt: fitxer de text amb els directoris i files llistats del main folder
 - myclass.ser: classe serialitzada
 - directoryContentParametrized.txt: fitxer de text amb el llistat de directoris i files utilizant els parametres de resources/config.properties
