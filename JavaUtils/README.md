@@ -1,6 +1,6 @@
 # IT-Academy-S1.05-Java Utils
 
-### Nivel 1
+### Nivell 1
 
 - Exercici 1  
   Crea una classe que llisti alfabèticament el contingut d'un directori rebut per paràmetre.
@@ -17,7 +17,7 @@
 - Exercici 5  
   Ara el programa ha de serialitzar un Objecte Java a un fitxer .ser i després l’ha de desserialitzar.
 
-### Nivel 2
+### Nivell 2
 
 Executa l'exercici 3 del nivell anterior parametritzant tots els mètodes en un fitxer de configuració.
 
@@ -27,6 +27,12 @@ De l'exercici anterior, parametritza el següent:
 
 * Directori a llegir.
 * Nom i directori del fitxer TXT resultant.
+
+### Nivell 3
+
+Crea una utilitat que encripti i desencripti els fitxers resultants dels nivells anteriors.
+
+Fes servir l'algorisme AES en manera de treball ECB o CBC amb mètode d'ompliment PKCS5Padding. Es pot emprar javax.crypto o bé org.apache.commons.crypto.
 
 ### Tecnologies Utilitzades
 
