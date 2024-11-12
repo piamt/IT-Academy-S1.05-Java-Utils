@@ -38,32 +38,6 @@ public class EncryptionUtil {
                 .encodeToString(cipherText);
     }
 
-    public static void encryptFile(String algorithm, SecretKey key, IvParameterSpec iv,
-                                   File inputFile, File outputFile) throws IOException, NoSuchPaddingException,
-            NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-
-        Cipher cipher = Cipher.getInstance(algorithm);
-        cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-        FileInputStream inputStream = new FileInputStream(inputFile);
-        FileOutputStream outputStream = new FileOutputStream(outputFile);
-        byte[] buffer = new byte[64];
-        int bytesRead;
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            byte[] output = cipher.update(buffer, 0, bytesRead);
-            if (output != null) {
-                outputStream.write(output);
-            }
-        }
-        byte[] outputBytes = cipher.doFinal();
-        if (outputBytes != null) {
-            outputStream.write(outputBytes);
-        }
-        inputStream.close();
-        outputStream.close();
-    }
-
-
     public static String decrypt(String algorithm, String cipherText, SecretKey key,
                                  IvParameterSpec iv) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException,
@@ -76,13 +50,29 @@ public class EncryptionUtil {
         return new String(plainText);
     }
 
+    public static void encryptFile(String algorithm, SecretKey key, IvParameterSpec iv,
+                                   File inputFile, File outputFile) throws IOException, NoSuchPaddingException,
+            NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException,
+            BadPaddingException, IllegalBlockSizeException {
+
+        encryptdecryptFile(algorithm, key, iv, inputFile, outputFile, Cipher.ENCRYPT_MODE);
+    }
+
     public static void decryptFile(String algorithm, SecretKey key, IvParameterSpec iv,
                                    File inputFile, File outputFile) throws IOException, NoSuchPaddingException,
             NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
 
+        encryptdecryptFile(algorithm, key, iv, inputFile, outputFile, Cipher.DECRYPT_MODE);
+    }
+
+    private static void encryptdecryptFile(String algorithm, SecretKey key, IvParameterSpec iv,
+                                   File inputFile, File outputFile, int opmode) throws IOException, NoSuchPaddingException,
+            NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException,
+            BadPaddingException, IllegalBlockSizeException {
+
         Cipher cipher = Cipher.getInstance(algorithm);
-        cipher.init(Cipher.DECRYPT_MODE, key, iv);
+        cipher.init(opmode, key, iv);
 
         FileInputStream inputStream = new FileInputStream(inputFile);
         FileOutputStream outputStream = new FileOutputStream(outputFile);

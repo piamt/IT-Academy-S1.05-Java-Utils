@@ -1,11 +1,11 @@
 package org.example;
 
-public class MyClass implements  java.io.Serializable {
+public class User implements  java.io.Serializable {
 
     String name;
     double age;
 
-    public MyClass(String name, double age) {
+    public User(String name, double age) {
         this.name = name;
         this.age = age;
     }

@@ -16,19 +16,19 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Nivell 1 - Exercici 1:");
-        DirectoryContent.findAllFilesInFolder("./src/main");
+        DirectoryManager.findAllFilesInFolder("./src/main");
 
         System.out.println("\n Nivell 1 - Exercici 2 & 3:");
-        DirectoryContent.findAllFilesRecursiveInFolder("../", "src/main/files/directoryContent.txt");
+        DirectoryManager.findAllFilesRecursiveInFolder("../", "src/main/files/directoryContent.txt");
 
         System.out.println("\n Nivell 1 - Exercici 4:");
-        DirectoryContent.readTextFile("src/main/files/directoryContent.txt");
+        DirectoryManager.readTextFile("src/main/files/directoryContent.txt");
 
         System.out.println("\n Nivell 1 - Exercici 5:");
-        MyClass myClass = new MyClass("Laura", 34);
-        DirectoryContent.serialise(myClass, "src/main/files/myclass.ser");
-        MyClass myClass2 = DirectoryContent.deserialise("src/main/files/myclass.ser");
-        System.out.println("Deserialised: " + myClass2.toString());
+        User user = new User("Laura", 34);
+        Serializer.serialise(user, "src/main/files/user.ser");
+        User user2 = Serializer.deserialise("src/main/files/user.ser");
+        System.out.println("Deserialised: " + user2.toString());
 
         System.out.println("\nNivell 2:");
         try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {
@@ -36,7 +36,7 @@ public class Main {
             appProps.load(input);
             String folder = appProps.getProperty("folder");
             String filePath = appProps.getProperty("filePath");
-            DirectoryContent.findAllFilesRecursiveInFolder(folder, filePath);
+            DirectoryManager.findAllFilesRecursiveInFolder(folder, filePath);
         } catch (IOException|NullPointerException e) {
             System.out.println("Exception accessing files");
         }

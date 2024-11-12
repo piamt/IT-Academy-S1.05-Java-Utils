@@ -8,11 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static java.nio.file.Files.list;
 
-public class DirectoryContent {
+public class DirectoryManager {
 
     public static void findAllFilesInFolder(String folder) {
         try (var files = list(Paths.get(folder))) {
@@ -70,36 +69,5 @@ public class DirectoryContent {
         for (String line : list) {
             System.out.println(line);
         }
-    }
-
-    public static void serialise(MyClass myClass, String fileName) { //myclass.ser
-        try {
-            FileOutputStream fileOut = new FileOutputStream(fileName);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(myClass);
-            out.close();
-            fileOut.close();
-            System.out.println("Serialized data is saved in /tmp/" + fileName);
-        } catch (IOException e) {
-            System.out.println("Serialisation could not be completed");
-        }
-    }
-
-    public static MyClass deserialise(String fileName) {
-        MyClass myClass = null;
-        try {
-            FileInputStream fileIn = new FileInputStream(fileName);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            myClass = (MyClass) in.readObject();
-            in.close();
-            fileIn.close();
-        } catch (IOException e) {
-            System.out.println("Deserialisation could not be completed");
-            return myClass;
-        } catch (ClassNotFoundException c) {
-            System.out.println("MyClass class not found");
-            return myClass;
-        }
-        return myClass;
     }
 }
